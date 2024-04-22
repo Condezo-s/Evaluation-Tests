@@ -1,0 +1,17 @@
+{
+  "name": "tests",
+  "version": "1.0.0",
+  "description": "evaluation",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "evaluation"
+  ],
+  "author": "Lu Condezo",
+  "license": "ISC",
+  "dependencies": {
+    "cypress": "^13.8.0"
+  }
+}
