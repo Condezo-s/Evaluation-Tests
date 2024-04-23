@@ -7,11 +7,34 @@ describe('Happy Path Workflow Test', () => {
   })
 
   it('should complete the happy path workflow successfully', () => {
-    // Agregar un artículo al carrito y completar el proceso de compra
-    cy.addToCartAndCompleteCheckout()
+    // Hacer clic en el botón "Add to Cart" para "Sauce Labs Bike Light"
+    cy.get('.inventory_item_name')
+      .contains('Sauce Labs Bike Light')
+      .siblings('.btn_inventory')
+      .click()
 
-    // Cerrar sesión
-    cy.logout()
+    // Hacer clic en el icono del carrito de compras
+    cy.get('.shopping_cart_link').click()
+
+    // Hacer clic en el botón "Checkout" en la página del carrito
+    cy.get('#checkout').click()
+
+    // Completar la información de pago con datos aleatorios
+    cy.get('#first-name').type('David')
+    cy.get('#last-name').type('Gomez')
+    cy.get('#postal-code').type('12345')
+
+    // Hacer clic en el botón "Continue"
+    cy.get('#continue').click()
+
+    // Hacer clic en el botón "Finish" en la página de resumen del pedido
+    cy.get('#finish').click()
+
+    // Hacer clic en el icono del menú
+    cy.get('.bm-burger-button').click()
+
+    // Hacer clic en el botón "Logout"
+    cy.get('#logout_sidebar_link').click()
 
     // Verificar que el usuario haya sido redirigido a la página de inicio de sesión
     cy.url().should('include', '/index.html')
@@ -23,56 +46,4 @@ Cypress.Commands.add('login', (username, password) => {
   cy.get('#user-name').type(username)
   cy.get('#password').type(password)
   cy.get('#login-button').click()
-})
-
-Cypress.Commands.add('addToCartAndCompleteCheckout', () => {
-  // Agregar un artículo al carrito
-  cy.addToCart('Sauce Labs Bike Light')
-
-  // Ir al carrito y proceder al checkout
-  cy.goToCheckout()
-
-  // Completar el proceso de pago
-  cy.fillCheckoutInfo('John', 'Doe', '12345')
-
-  // Finalizar la compra
-  cy.finishCheckout()
-})
-
-Cypress.Commands.add('addToCart', (productName) => {
-  // Hacer clic en el botón "Add to Cart" para el producto especificado
-  cy.contains('.inventory_item_name', productName)
-    .siblings('.btn_inventory')
-    .click()
-})
-
-Cypress.Commands.add('goToCheckout', () => {
-  // Hacer clic en el icono del carrito de compras
-  cy.get('.shopping_cart_link').click()
-
-  // Hacer clic en el botón "Checkout" en la página del carrito
-  cy.get('#checkout').click()
-})
-
-Cypress.Commands.add('fillCheckoutInfo', (firstName, lastName, postalCode) => {
-  // Completar la información de pago con los datos proporcionados
-  cy.get('#first-name').type(firstName)
-  cy.get('#last-name').type(lastName)
-  cy.get('#postal-code').type(postalCode)
-
-  // Hacer clic en el botón "Continue"
-  cy.get('#continue').click()
-})
-
-Cypress.Commands.add('finishCheckout', () => {
-  // Hacer clic en el botón "Finish" en la página de resumen del pedido
-  cy.get('#finish').click()
-})
-
-Cypress.Commands.add('logout', () => {
-  // Hacer clic en el icono del menú
-  cy.get('.bm-burger-button').click()
-
-  // Hacer clic en el botón "Logout"
-  cy.get('#logout_sidebar_link').click()
 })
