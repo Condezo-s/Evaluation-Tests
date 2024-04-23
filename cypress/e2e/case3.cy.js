@@ -11,9 +11,8 @@ describe('Happy Path Workflow Test', () => {
     cy.get('.inventory_item_name')
       .contains('Sauce Labs Bike Light')
 
+      cy.get('button#add-to-cart-sauce-labs-bike-light.btn.btn_primary.btn_small.btn_inventory').scrollIntoView().should('be.visible')
 
-      cy.get('add-to-cart-sauce-labs-bike-light')
-      //.siblings('.btn_inventory')
       .click()
 
     // Hacer clic en el icono del carrito de compras
@@ -39,8 +38,9 @@ describe('Happy Path Workflow Test', () => {
     // Hacer clic en el botón "Logout"
     cy.get('#logout_sidebar_link').click()
 
-    // Verificar que el usuario haya sido redirigido a la página de inicio de sesión
-    cy.url().should('include', '/index.html')
+        // Verificar que el usuario haya sido redirigido a la página de inicio de sesión
+        cy.url().should('include', 'https://www.saucedemo.com/')
+
   })
 })
 
