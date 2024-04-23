@@ -29,7 +29,8 @@ Cypress.Commands.add('addToCartAndCompleteCheckout', () => {
   // Hacer clic en el botón "Add to Cart" para "Sauce Labs Bike Light"
   cy.get('.inventory_item_name')
     .contains('Sauce Labs Bike Light')
-    .siblings('.btn_inventory')
+
+    .siblings('btn_small.btn_inventory')
     .click()
 
   // Hacer clic en el icono del carrito de compras
