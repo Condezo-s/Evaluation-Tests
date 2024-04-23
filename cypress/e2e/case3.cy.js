@@ -10,7 +10,10 @@ describe('Happy Path Workflow Test', () => {
     // Hacer clic en el botón "Add to Cart" para "Sauce Labs Bike Light"
     cy.get('.inventory_item_name')
       .contains('Sauce Labs Bike Light')
-      .siblings('.btn_inventory')
+
+
+      cy.get('add-to-cart-sauce-labs-bike-light')
+      //.siblings('.btn_inventory')
       .click()
 
     // Hacer clic en el icono del carrito de compras
