@@ -38,8 +38,8 @@ describe('Happy Path Workflow Test', () => {
     // Hacer clic en el botón "Logout"
     cy.get('#logout_sidebar_link').click()
 
-        // Verificar que el usuario haya sido redirigido a la página de inicio de sesión
-        cy.url().should('include', 'https://www.saucedemo.com/')
+    // Verificar que el usuario haya sido redirigido a la página de inicio de sesión
+    cy.url().should('include', 'https://www.saucedemo.com/')
 
   })
 })
