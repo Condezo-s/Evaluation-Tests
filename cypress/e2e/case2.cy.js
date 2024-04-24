@@ -1,21 +1,21 @@
 describe('Failed Login Test', () => {
   beforeEach(() => {
-    // Visitar la página de inicio de sesión antes de cada prueba
+    // Visit the login page before each test
     cy.visit('https://www.saucedemo.com/')
   })
 
   it('should fail to login with invalid credentials', () => {
-    // Introducir credenciales inválidas
+    // Enter invalid credentials
     cy.login('locked_out_user', 'secret_sauce')
 
-    // Verificar que se muestre un mensaje de error de inicio de sesión
+    // Verify that a login error message is displayed
     cy.get('.error-message-container').should('be.visible')
       .and('contain.text', 'Epic sadface: Sorry, this user has been locked out.')
   })
 })
 
 Cypress.Commands.add('login', (username, password) => {
-  // Localizar elementos de entrada de texto y botón de inicio de sesión, luego introducir credenciales y hacer clic en el botón
+//Locate text input elements and login button, then enter credentials and click the button
   cy.get('#user-name').type(username)
   cy.get('#password').type(password)
   cy.get('#login-button').click()

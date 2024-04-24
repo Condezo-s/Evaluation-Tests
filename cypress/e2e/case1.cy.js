@@ -1,22 +1,22 @@
 
 describe('Successful Login Test', () => {
   beforeEach(() => {
-    // Visitar la página de inicio de sesión antes de cada prueba
+   // Visit the login page before each test
     cy.visit('https://www.saucedemo.com/')
   })
 
   it('should login successfully with valid credentials', () => {
-    // Introducir credenciales válidas
+   //Enter valid credentials
     cy.login('standard_user', 'secret_sauce')
 
-    // Verificar que el usuario sea redirigido a la página de productos y el botón "Agregar al carrito" esté presente
+    // Verify that the user is redirected to the product page and the "Add to Cart" button is present
     cy.url().should('include', '/inventory.html')
     cy.get('.btn_inventory').should('exist')
   })
 })
 
 Cypress.Commands.add('login', (username, password) => {
-  // Localizar elementos de entrada de texto y botón de inicio de sesión, luego introducir credenciales y hacer clic en el botón
+//Locate text input elements and login button, then enter credentials and click the button
   cy.get('#user-name').type(username)
   cy.get('#password').type(password)
   cy.get('#login-button').click()
